@@ -1,0 +1,32 @@
+{
+  "title": "Pricing & Add-ons",
+  "shortTitle": "Pricing",
+  "subtitle": "Transparent and clear pricing",
+  "addons": [
+    {
+      "id": "extra-page",
+      "name": "Additional page",
+      "price": "100€",
+      "icon": "➕"
+    },
+    {
+      "id": "form",
+      "name": "Contact form",
+      "price": "60€",
+      "icon": "📝"
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery",
+      "price": "60€",
+      "icon": "🖼️"
+    },
+    {
+      "id": "custom-dev",
+      "name": "Custom development",
+      "price": "60€/h",
+      "icon": "⚙️"
+    }
+  ],
+  "note": "All packages include modern technology, responsive design and deployment."
+}

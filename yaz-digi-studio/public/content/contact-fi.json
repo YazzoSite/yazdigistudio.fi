@@ -1,0 +1,58 @@
+{
+  "title": "Ota yhteyttä - Yaz DigiStudio",
+  "shortTitle": "Yhteystiedot",
+  "subtitle": "Keskustellaan projektistasi, määritellään tarpeesi ja tarjotaan ratkaisu juuri sinulle sopivaksi.",
+  "form": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "Nimi",
+        "type": "text",
+        "placeholder": "Nimesi",
+        "required": true
+      },
+      {
+        "id": "email",
+        "label": "Sähköposti",
+        "type": "email",
+        "placeholder": "sahkoposti@esimerkki.fi",
+        "required": true
+      },
+      {
+        "id": "phone",
+        "label": "Puhelin",
+        "type": "tel",
+        "placeholder": "+358 40 123 4567",
+        "required": false
+      },
+      {
+        "id": "package",
+        "label": "Kiinnostava paketti",
+        "type": "select",
+        "options": [
+          { "value": "", "label": "Valitse paketti" },
+          { "value": "basic", "label": "Perus (alkaen 499€ + alv)" },
+          { "value": "extended", "label": "Laajennettu (alkaen 699€ + alv)" },
+          { "value": "business", "label": "Yritys (alkaen 899€ + alv)" },
+          { "value": "custom", "label": "Räätälöity ratkaisu" }
+        ],
+        "required": false
+      },
+      {
+        "id": "message",
+        "label": "Viesti",
+        "type": "textarea",
+        "placeholder": "Kerro projektistasi...",
+        "required": true
+      }
+    ],
+    "submitButton": "Lähetä viesti",
+    "successMessage": "Kiitos viestistäsi! Palaan asiaan pian.",
+    "errorMessage": "Viestin lähetys epäonnistui. Yritä uudelleen tai lähetä suoraan sähköpostiin."
+  },
+  "info": {
+    "email": "info@yazdigistudio.fi",
+    "phone": "+358 40 123 4567",
+    "responseTime": "Vastaan yleensä 1-2 arkipäivän sisällä"
+  }
+}

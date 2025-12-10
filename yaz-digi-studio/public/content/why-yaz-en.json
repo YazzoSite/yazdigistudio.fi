@@ -1,0 +1,43 @@
+{
+  "title": "Why Yaz DigiStudio?",
+  "shortTitle": "Why Yaz?",
+  "subtitle": "Modern technology, clear process",
+  "benefits": [
+    {
+      "id": "modern-tech",
+      "title": "Modern technology",
+      "description": "React, TypeScript, Vite - fast and maintainable websites",
+      "icon": "⚡"
+    },
+    {
+      "id": "cms",
+      "title": "Easy content management",
+      "description": "Update pages yourself with Decap CMS, no technical skills required",
+      "icon": "✏️"
+    },
+    {
+      "id": "responsive",
+      "title": "Works on all devices",
+      "description": "Responsive design - looks great on mobile, tablet and desktop",
+      "icon": "📱"
+    },
+    {
+      "id": "seo",
+      "title": "SEO friendly",
+      "description": "Built with SEO optimization, easy to find in search engines",
+      "icon": "🔍"
+    },
+    {
+      "id": "fast",
+      "title": "Fast",
+      "description": "Lightweight and optimized code ensures fast loading times",
+      "icon": "🚀"
+    },
+    {
+      "id": "support",
+      "title": "Support in Finnish",
+      "description": "Clear communication and support in Finnish language",
+      "icon": "💬"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Process in three steps",
+  "shortTitle": "Process",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Discussion",
+      "description": "We map your needs and plan the structure"
+    },
+    {
+      "number": "02",
+      "title": "Build",
+      "description": "We build the site with modern technology (1-2 weeks)"
+    },
+    {
+      "number": "03",
+      "title": "Launch",
+      "description": "Site goes live and you learn to update content yourself"
+    }
+  ]
+}

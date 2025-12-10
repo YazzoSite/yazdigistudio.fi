@@ -1,0 +1,32 @@
+{
+  "title": "Hinnoittelu & Lisäpalvelut",
+  "shortTitle": "Hinnoittelu",
+  "subtitle": "Läpinäkyvät ja selkeät hinnat",
+  "addons": [
+    {
+      "id": "extra-page",
+      "name": "Lisäsivu",
+      "price": "100€",
+      "icon": "➕"
+    },
+    {
+      "id": "form",
+      "name": "Yhteydenottolomake",
+      "price": "60€",
+      "icon": "📝"
+    },
+    {
+      "id": "gallery",
+      "name": "Galleria",
+      "price": "60€",
+      "icon": "🖼️"
+    },
+    {
+      "id": "custom-dev",
+      "name": "Räätälöinti",
+      "price": "60€/h",
+      "icon": "⚙️"
+    }
+  ],
+  "note": "Kaikki paketit sisältävät modernin teknologian, responsiivisen toteutuksen ja julkaisun."
+}

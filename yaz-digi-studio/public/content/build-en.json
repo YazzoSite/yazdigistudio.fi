@@ -1,0 +1,43 @@
+{
+  "title": "Build Packages",
+  "shortTitle": "Build",
+  "subtitle": "Choose the package that suits your needs, the final price is determined based on the actual scope of the project and will be agreed separately at the start.",
+  "packages": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "price": "from 499€ + VAT",
+      "stars": "⭐",
+      "features": [
+        "3+ pages",
+        "CMS content management",
+        "Responsive",
+        "SEO friendly"
+      ]
+    },
+    {
+      "id": "extended",
+      "name": "Extended",
+      "price": "from 699€ + VAT",
+      "stars": "⭐⭐",
+      "features": [
+        "5+ pages",
+        "Contact form",
+        "Gallery/cards",
+        "Icons"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "price": "from 899€ + VAT",
+      "stars": "⭐⭐⭐",
+      "features": [
+        "6+ pages",
+        "Multiple components",
+        "Custom layout",
+        "Advanced optimization"
+      ]
+    }
+  ]
+}

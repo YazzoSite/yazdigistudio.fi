@@ -1,0 +1,469 @@
+/**
+ * Cards CSS
+ *
+ * Styling for all face card components with futuristic space theme
+ */
+
+/* Card Container */
+.card-content {
+  width: 100%;
+  max-width: 900px;
+  max-height: 95vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  position: relative;
+  color: #ffffff;
+}
+
+/* Hide scrollbar on desktop while keeping scroll functionality */
+@media (min-width: 769px) {
+  .card-content {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .card-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
+/* Close Button */
+.card-close {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 8px 30px rgba(255, 0, 0, 0.4);
+}
+
+.card-close:hover {
+  background: rgba(255, 0, 0, 0.4);
+  border-color: #ff0033;
+  box-shadow: 0 12px 40px rgba(255, 0, 0, 0.6);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Card Title & Subtitle */
+.card-title {
+  font-size: 2.2rem;
+  margin: 0 0 0.8rem 0;
+  background: linear-gradient(135deg, #00ccff, #ff0099);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.5rem;
+  color: #00ccff;
+}
+
+/* ===== PROCESS CARD ===== */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.process-step {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  background: rgba(0, 68, 255, 0.1);
+  border: 1px solid rgba(0, 204, 255, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.process-step:hover {
+  background: rgba(0, 68, 255, 0.2);
+  border-color: #00ccff;
+  box-shadow: 0 4px 20px rgba(0, 204, 255, 0.3);
+  transform: translateX(10px);
+}
+
+.step-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00ccff;
+  min-width: 3.5rem;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #ffffff;
+}
+
+.step-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== PACKAGES GRID (Build & Care Cards) ===== */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.package-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.package-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00ccff;
+  box-shadow: 0 8px 30px rgba(0, 204, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.package-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.package-name {
+  font-size: 1.3rem;
+  margin: 0;
+  color: #ffffff;
+}
+
+.package-stars {
+  font-size: 1.2rem;
+}
+
+.package-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00ccff;
+  margin-bottom: 1.5rem;
+}
+
+.package-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.package-features li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.package-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #00ccff;
+  font-weight: bold;
+}
+
+/* ===== PRICING CARD ===== */
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.addon-card {
+  background: rgba(255, 187, 0, 0.1);
+  border: 1px solid rgba(255, 187, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.addon-card:hover {
+  background: rgba(255, 187, 0, 0.2);
+  border-color: #ffbb00;
+  box-shadow: 0 8px 30px rgba(255, 187, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.addon-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.addon-name {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #ffffff;
+}
+
+.addon-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffbb00;
+}
+
+.pricing-note {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #ffbb00;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+/* ===== WHY YAZ CARD ===== */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.benefit-card {
+  background: rgba(255, 0, 153, 0.1);
+  border: 1px solid rgba(255, 0, 153, 0.3);
+  border-radius: 12px;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  background: rgba(255, 0, 153, 0.2);
+  border-color: #ff0099;
+  box-shadow: 0 8px 30px rgba(255, 0, 153, 0.3);
+  transform: translateY(-5px);
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-title {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+  color: #ffffff;
+}
+
+.benefit-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== CONTACT CARD ===== */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.contact-info {
+  background: rgba(0, 204, 255, 0.1);
+  border: 1px solid rgba(0, 204, 255, 0.3);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+
+.contact-info h3 {
+  margin-top: 0;
+  color: #00ccff;
+}
+
+.contact-info p {
+  margin: 0.8rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-info a {
+  color: #00ccff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.response-time {
+  margin-top: 1.5rem !important;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+
+.form-field {
+  margin-bottom: 1.2rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.required {
+  color: #ff0099;
+  margin-left: 0.25rem;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #00ccff;
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #00ccff, #0099cc);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #00ffff, #00ccff);
+  box-shadow: 0 4px 20px rgba(0, 204, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .card-content {
+    padding: 1rem;
+    max-height: 90vh;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+  }
+
+  .card-subtitle {
+    font-size: 1rem;
+  }
+
+  .packages-grid,
+  .addons-grid,
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .process-step {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .step-number {
+    font-size: 2rem;
+  }
+
+  .card-close {
+    bottom: 1rem;
+    right: 1rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2.5rem;
+  }
+}
+
+/* Scrollbar Styling - Only for mobile */
+@media (max-width: 768px) {
+  .card-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .card-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .card-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 204, 255, 0.5);
+    border-radius: 4px;
+  }
+
+  .card-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 204, 255, 0.8);
+  }
+}

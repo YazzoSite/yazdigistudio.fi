@@ -1,39 +1,214 @@
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
+import { useLanguage } from '../contexts/LanguageContext'
+import { ProcessCard } from './cards/ProcessCard'
+import { BuildCard } from './cards/BuildCard'
+import { CareCard } from './cards/CareCard'
+import { PricingCard } from './cards/PricingCard'
+import { WhyYazCard } from './cards/WhyYazCard'
+import { ContactCard } from './cards/ContactCard'
 import './Cube.css'
 
 const FACES = [
-  { label: 'Process', position: [0, 0, 2], color: 0x0044ff },      // Deep Electric Blue
-  { label: 'Build', position: [0, 0, -2], color: 0xff0033 },       // Deep Crimson Red
-  { label: 'Care', position: [2, 0, 0], color: 0xaa00ff },         // Deep Violet Purple
-  { label: 'Pricing', position: [-2, 0, 0], color: 0xffbb00 },     // Golden Amber
-  { label: 'Why Yaz', position: [0, 2, 0], color: 0xff0099 },      // Hot Magenta
-  { label: 'Contact', position: [0, -2, 0], color: 0x00ccff },     // Bright Cyan
-]
+  { contentType: 'process', position: [0, 0, 2], color: 0x0044ff },      // Deep Electric Blue
+  { contentType: 'build', position: [0, 0, -2], color: 0xff0033 },       // Deep Crimson Red
+  { contentType: 'care', position: [2, 0, 0], color: 0xaa00ff },         // Deep Violet Purple
+  { contentType: 'pricing', position: [-2, 0, 0], color: 0xffbb00 },     // Golden Amber
+  { contentType: 'why-yaz', position: [0, 2, 0], color: 0xff0099 },      // Hot Magenta
+  { contentType: 'contact', position: [0, -2, 0], color: 0x00ccff },     // Bright Cyan
+] as const
 
-export default function Cube() {
+type CubeProps = {
+  selectedFace: number | null
+  onFaceSelect: (faceIndex: number | null) => void
+}
+
+export default function Cube({ selectedFace, onFaceSelect }: CubeProps) {
+  const { language } = useLanguage()
   const mountRef = useRef<HTMLDivElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const cubeRef = useRef<THREE.Group | null>(null)
   const textMeshesRef = useRef<THREE.Mesh[]>([])
-  const [selectedFace, setSelectedFace] = useState<number | null>(null)
+  const [faceLabels, setFaceLabels] = useState<string[]>([
+    'Process', 'Build', 'Care', 'Pricing', 'Why Yaz', 'Contact'
+  ])
+  const [faceContent, setFaceContent] = useState<unknown>(null)
+  const [loadingContent, setLoadingContent] = useState(false)
+  const [uiContent, setUiContent] = useState<{ instructions: { desktop: string; mobile: string } } | null>(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [showModal, setShowModal] = useState(false)
 
   const isRightMouseDownRef = useRef(false)
   const lastMousePosRef = useRef({ x: 0, y: 0 })
   const mouseDownPosRef = useRef({ x: 0, y: 0 })
   const autoRotateTimeRef = useRef(0)
   const lastFrameTimeRef = useRef(performance.now())
-  const brandingTextRef = useRef<THREE.Mesh | null>(null)
-  const brandingGlowRef = useRef<THREE.Mesh | null>(null)
+  const starsRef = useRef<THREE.Points | null>(null)
+
+  // Animation mode tracking
+  const animationModeRef = useRef<'idle' | 'positioning' | 'paused'>('idle')
+  const positionStartTimeRef = useRef(0)
+  const targetRotationRef = useRef<THREE.Quaternion | null>(null)
+  const pendingFaceIndexRef = useRef<number | null>(null)
+  const animationFrameIdRef = useRef<number | null>(null)
+
+  // Load UI content when language changes
+  useEffect(() => {
+    const loadUiContent = async () => {
+      try {
+        const response = await fetch(`/content/ui-${language}.json`)
+        if (response.ok) {
+          const data = await response.json()
+          setUiContent(data)
+        }
+      } catch (error) {
+        console.error('Error loading UI content:', error)
+      }
+    }
+
+    loadUiContent()
+  }, [language])
+
+  // Load content for all faces when language changes
+  useEffect(() => {
+    const loadAllContent = async () => {
+      try {
+        const labels: string[] = []
+
+        for (const face of FACES) {
+          const response = await fetch(`/content/${face.contentType}-${language}.json`)
+          if (response.ok) {
+            const data = await response.json()
+            // Use shortTitle for cube faces
+            labels.push(data.shortTitle || data.title || face.contentType)
+          } else {
+            labels.push(face.contentType)
+          }
+        }
+
+        setFaceLabels(labels)
+      } catch (error) {
+        console.error('Error loading face labels:', error)
+      }
+    }
+
+    loadAllContent()
+  }, [language])
+
+  // Load full content when a face is selected
+  useEffect(() => {
+    if (selectedFace === null) {
+      setFaceContent(null)
+      return
+    }
+
+    const loadFaceContent = async () => {
+      setLoadingContent(true)
+      try {
+        const contentType = FACES[selectedFace].contentType
+        const response = await fetch(`/content/${contentType}-${language}.json`)
+        if (response.ok) {
+          const data = await response.json()
+          setFaceContent(data)
+        }
+      } catch (error) {
+        console.error('Error loading face content:', error)
+      } finally {
+        setLoadingContent(false)
+      }
+    }
+
+    loadFaceContent()
+  }, [selectedFace, language])
+
+  // Update text meshes when face labels change (language switch)
+  useEffect(() => {
+    if (textMeshesRef.current.length === 0 || faceLabels.length === 0) return
+
+    textMeshesRef.current.forEach((textMesh, index) => {
+      // Create a new canvas with the updated label
+      const textCanvas = document.createElement('canvas')
+      textCanvas.width = 512
+      textCanvas.height = 256
+      const textCtx = textCanvas.getContext('2d')!
+
+      const label = faceLabels[index] || FACES[index].contentType
+      textCtx.font = 'bold 72px Arial'
+      textCtx.textAlign = 'center'
+      textCtx.textBaseline = 'middle'
+
+      // Black outline
+      textCtx.strokeStyle = '#000000'
+      textCtx.lineWidth = 12
+      textCtx.strokeText(label, 256, 128)
+
+      // White fill
+      textCtx.fillStyle = '#ffffff'
+      textCtx.fillText(label, 256, 128)
+
+      // Update the texture
+      const newTexture = new THREE.CanvasTexture(textCanvas)
+      const material = textMesh.material as THREE.MeshBasicMaterial
+      if (material.map) {
+        material.map.dispose()
+      }
+      material.map = newTexture
+      material.needsUpdate = true
+    })
+  }, [faceLabels])
+
+  // Watch selectedFace prop changes (from header navigation)
+  // Trigger cube rotation animation when header button is clicked
+  useEffect(() => {
+    if (selectedFace === null || !cubeRef.current) return
+
+    // If modal is already open, just keep it open and switch content
+    // (content will be loaded by the useEffect at lines 101-124)
+    if (showModal) {
+      return
+    }
+
+    // Modal not open yet, animate cube rotation before showing modal
+    const targetQuaternion = new THREE.Quaternion()
+
+    switch (selectedFace) {
+      case 0: // Front face - already facing camera, just make it upright
+        targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), 0)
+        break
+      case 1: // Back face - rotate 180° around Y
+        targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI)
+        break
+      case 2: // Right face - rotate -90° around Y
+        targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI / 2)
+        break
+      case 3: // Left face - rotate 90° around Y
+        targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 2)
+        break
+      case 4: // Top face - rotate 90° around X (tilt down to face camera)
+        targetQuaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 2)
+        break
+      case 5: // Bottom face - rotate -90° around X (tilt up to face camera)
+        targetQuaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2)
+        break
+    }
+
+    // Trigger positioning animation (same as click)
+    animationModeRef.current = 'positioning'
+    positionStartTimeRef.current = performance.now()
+    pendingFaceIndexRef.current = selectedFace
+    targetRotationRef.current = targetQuaternion
+    setShowModal(false) // Hide modal during animation
+  }, [selectedFace, showModal])
 
   useEffect(() => {
     if (!mountRef.current) return
 
     const currentMount = mountRef.current
+
+    // Reset text meshes ref to prevent duplicates in Strict Mode
+    textMeshesRef.current = []
 
     // Scene setup
     const scene = new THREE.Scene()
@@ -146,7 +321,7 @@ export default function Cube() {
       }
       
       mesh.userData.faceIndex = index
-      mesh.userData.label = faceData.label
+      mesh.userData.contentType = faceData.contentType
       cube.add(mesh)
 
       // Create floating text plane for this face
@@ -155,7 +330,8 @@ export default function Cube() {
       textCanvas.height = 256
       const textCtx = textCanvas.getContext('2d')!
 
-      // Draw text with outline
+      // Draw text with outline (using initial label from state)
+      const label = faceLabels[index] || faceData.contentType
       textCtx.font = 'bold 72px Arial'
       textCtx.textAlign = 'center'
       textCtx.textBaseline = 'middle'
@@ -163,11 +339,11 @@ export default function Cube() {
       // Black outline
       textCtx.strokeStyle = '#000000'
       textCtx.lineWidth = 12
-      textCtx.strokeText(faceData.label, 256, 128)
+      textCtx.strokeText(label, 256, 128)
 
       // White fill
       textCtx.fillStyle = '#ffffff'
-      textCtx.fillText(faceData.label, 256, 128)
+      textCtx.fillText(label, 256, 128)
 
       const textTexture = new THREE.CanvasTexture(textCanvas)
       const textMaterial = new THREE.MeshBasicMaterial({
@@ -222,27 +398,83 @@ export default function Cube() {
     pointLight2.position.set(-5, -5, 5)
     scene.add(pointLight2)
 
-    // Helper function to update branding text position based on screen size
-    const updateBrandingPosition = () => {
-      const isMobile = window.innerWidth < 768
+    // Create star field background
+    const starCount = 200
+    const starGeometry = new THREE.BufferGeometry()
+    const starPositions = new Float32Array(starCount * 3)
+    const starColors = new Float32Array(starCount * 3)
+    const starPhases = new Float32Array(starCount)
 
-      if (brandingTextRef.current && brandingGlowRef.current) {
-        if (isMobile) {
-          // Mobile: smaller text, more centered
-          const scale = 0.6
-          brandingTextRef.current.scale.set(scale, scale, scale)
-          brandingGlowRef.current.scale.set(scale * 1.02, scale * 1.02, scale * 1.02)
-          brandingTextRef.current.position.set(-2, 5, -8)
-          brandingGlowRef.current.position.set(-2, 5, -8)
-        } else {
-          // Desktop: normal size, left aligned
-          const scale = 1
-          brandingTextRef.current.scale.set(scale, scale, scale)
-          brandingGlowRef.current.scale.set(scale * 1.02, scale * 1.02, scale * 1.02)
-          brandingTextRef.current.position.set(-6, 5.5, -8)
-          brandingGlowRef.current.position.set(-6, 5.5, -8)
+    for (let i = 0; i < starCount; i++) {
+      // Random position in a sphere around the scene
+      const radius = 50 + Math.random() * 50
+      const theta = Math.random() * Math.PI * 2
+      const phi = Math.random() * Math.PI
+
+      starPositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
+      starPositions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta)
+      starPositions[i * 3 + 2] = radius * Math.cos(phi)
+
+      // Random color between light yellow and light blue
+      const colorMix = Math.random()
+      const lightYellow = new THREE.Color(0xffffcc) // Light yellow
+      const lightBlue = new THREE.Color(0xccddff) // Light blue
+      const starColor = lightYellow.lerp(lightBlue, colorMix)
+
+      starColors[i * 3] = starColor.r
+      starColors[i * 3 + 1] = starColor.g
+      starColors[i * 3 + 2] = starColor.b
+
+      // Random phase for varied brightness (not animated, just for variety)
+      starPhases[i] = Math.random()
+    }
+
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3))
+    starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3))
+    starGeometry.setAttribute('phase', new THREE.BufferAttribute(starPhases, 1))
+
+    // Shader material for circular stars with varied static brightness
+    const starMaterial = new THREE.ShaderMaterial({
+      vertexShader: `
+        attribute float phase;
+        varying vec3 vColor;
+        varying float vPhase;
+
+        void main() {
+          vColor = color;
+          vPhase = phase;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = 150.0 / -mvPosition.z;
+          gl_Position = projectionMatrix * mvPosition;
         }
-      }
+      `,
+      fragmentShader: `
+        varying vec3 vColor;
+        varying float vPhase;
+
+        void main() {
+          // Circular point shape
+          vec2 center = gl_PointCoord - vec2(0.5);
+          float dist = length(center);
+          if (dist > 0.5) discard;
+
+          // Static opacity based on phase (0.3 to 1.0 range for variety)
+          float opacity = 0.3 + 0.7 * vPhase;
+
+          gl_FragColor = vec4(vColor, opacity);
+        }
+      `,
+      transparent: true,
+      vertexColors: true
+    })
+
+    const stars = new THREE.Points(starGeometry, starMaterial)
+    scene.add(stars)
+    starsRef.current = stars
+
+    // Helper function to update cube scale based on screen size
+    const updateCubeScale = () => {
+      const isMobile = window.innerWidth < 768
 
       // Scale cube for mobile
       if (cubeRef.current) {
@@ -251,50 +483,8 @@ export default function Cube() {
       }
     }
 
-    // Load font and create 3D text
-    const fontLoader = new FontLoader()
-    fontLoader.load(
-      'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json',
-      (font) => {
-        const textGeometry = new TextGeometry('Yaz DigiStudio', {
-          font: font,
-          size: 1.2,
-          depth: 0.01,
-          curveSegments: 4,
-          bevelEnabled: false
-        })
-
-        // Center the text geometry
-        textGeometry.computeBoundingBox()
-        const textWidth = textGeometry.boundingBox!.max.x - textGeometry.boundingBox!.min.x
-        textGeometry.translate(-textWidth / 2, 0, 0)
-
-        // Create material with transparency and glow
-        const textMaterial = new THREE.MeshBasicMaterial({
-          color: 0xffffff,
-          transparent: true,
-          opacity: 0.8
-        })
-
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial)
-        brandingTextRef.current = textMesh
-        scene.add(textMesh)
-
-        // Add glow effect with a slightly larger duplicate
-        const glowMaterial = new THREE.MeshBasicMaterial({
-          color: 0x00ffff,
-          transparent: true,
-          opacity: 0.3
-        })
-        const glowMesh = new THREE.Mesh(textGeometry, glowMaterial)
-        brandingGlowRef.current = glowMesh
-        glowMesh.scale.multiplyScalar(1.02)
-        scene.add(glowMesh)
-
-        // Initial positioning based on screen size
-        updateBrandingPosition()
-      }
-    )
+    // Initial cube scaling
+    updateCubeScale()
 
     // Mouse movement
     const onPointerMove = (e: PointerEvent) => {
@@ -364,7 +554,39 @@ export default function Cube() {
             // Find the first mesh (not text plane) that was clicked
             for (const intersect of intersects) {
               if (intersect.object.userData.faceIndex !== undefined) {
-                setSelectedFace(intersect.object.userData.faceIndex)
+                const faceIndex = intersect.object.userData.faceIndex
+
+                // Start positioning animation - turn selected face to front
+                animationModeRef.current = 'positioning'
+                positionStartTimeRef.current = performance.now()
+                pendingFaceIndexRef.current = faceIndex
+
+                // Calculate target rotation based on which face was clicked
+                // Each face needs a different rotation to face camera upright
+                const targetQuaternion = new THREE.Quaternion()
+
+                switch (faceIndex) {
+                  case 0: // Front face - already facing camera, just make it upright
+                    targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), 0)
+                    break
+                  case 1: // Back face - rotate 180° around Y
+                    targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI)
+                    break
+                  case 2: // Right face - rotate -90° around Y
+                    targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI / 2)
+                    break
+                  case 3: // Left face - rotate 90° around Y
+                    targetQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 2)
+                    break
+                  case 4: // Top face - rotate 90° around X (tilt down to face camera)
+                    targetQuaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 2)
+                    break
+                  case 5: // Bottom face - rotate -90° around X (tilt up to face camera)
+                    targetQuaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2)
+                    break
+                }
+
+                targetRotationRef.current = targetQuaternion
                 break
               }
             }
@@ -373,7 +595,11 @@ export default function Cube() {
       }
     }
 
-    const onContextMenu = (e: Event) => {
+    const onContextMenu = (e: MouseEvent) => {
+      // Allow context menu when Ctrl/Cmd is held (for browser dev tools)
+      if (e.ctrlKey || e.metaKey) {
+        return
+      }
       e.preventDefault()
     }
 
@@ -431,7 +657,8 @@ export default function Cube() {
         }
       })
 
-      setSelectedFace(nearestFace)
+      onFaceSelect(nearestFace)
+      setShowModal(true) // Show modal immediately for drag release
     }
 
     window.addEventListener('pointermove', onPointerMove)
@@ -440,44 +667,83 @@ export default function Cube() {
     window.addEventListener('contextmenu', onContextMenu)
     window.addEventListener('keydown', onKeyDown)
 
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate)
+    // Animation loop with frame rate limiting
+    const fpsLimit = 60
+    const frameDelay = 1000 / fpsLimit
+    let lastRenderTime = 0
+
+    const animate = (currentTime: number) => {
+      // Keep the animation loop running always
+      animationFrameIdRef.current = requestAnimationFrame(animate)
+
+      const mode = animationModeRef.current
+
+      // Skip rendering when paused (modal is open)
+      if (mode === 'paused') {
+        return
+      }
+
+      // Limit to 60fps for better performance
+      const timeSinceLastRender = currentTime - lastRenderTime
+      if (timeSinceLastRender < frameDelay) return
+
+      lastRenderTime = currentTime - (timeSinceLastRender % frameDelay)
 
       // Calculate delta time for frame-rate independent animation
-      const currentTime = performance.now()
       const deltaTime = (currentTime - lastFrameTimeRef.current) / 1000  // Convert to seconds
       lastFrameTimeRef.current = currentTime
 
-      // Auto-rotate when not being dragged
+      // Handle different animation modes
       if (!isRightMouseDownRef.current && cubeRef.current) {
-        // Increment time based on actual elapsed time (frame-rate independent)
-        // 0.01 was the old per-frame increment at ~60fps, which equals 0.6 per second
-        // So we use deltaTime * 0.6 to maintain the same visual speed
-        autoRotateTimeRef.current += deltaTime * 0.6
+        if (mode === 'positioning') {
+          // Smoothly rotate to face forward, then pause before showing modal
+          const elapsed = (currentTime - positionStartTimeRef.current) / 1000
+          const rotationDuration = 0.8 // Rotate for 0.8 seconds
+          const pauseDuration = 0.3 // Pause for 0.3 seconds
+          const totalDuration = rotationDuration + pauseDuration
 
-        const t = autoRotateTimeRef.current
+          if (elapsed < rotationDuration && targetRotationRef.current) {
+            // Smooth interpolation to target rotation
+            const progress = elapsed / rotationDuration // 0 to 1 over rotation duration
+            const easedProgress = 1 - Math.pow(1 - progress, 3) // Ease out cubic
 
-        // Use sine/cosine with different periods for organic, varying rotation
-        // Multiply by deltaTime * 60 to normalize to 60fps equivalent (frame-rate independent)
-        const speedX = Math.sin(t * 0.3) * 0.003 * (deltaTime * 60)
-        const speedY = Math.cos(t * 0.4) * 0.003 * (deltaTime * 60)
-        const speedZ = Math.sin(t * 0.5) * 0.0015 * (deltaTime * 60)
+            cubeRef.current.quaternion.slerp(targetRotationRef.current, easedProgress * 0.2)
+          } else if (elapsed >= totalDuration) {
+            // Animation and pause complete, show modal and stop rendering
+            animationModeRef.current = 'paused'
+            if (pendingFaceIndexRef.current !== null) {
+              onFaceSelect(pendingFaceIndexRef.current)
+              pendingFaceIndexRef.current = null
+              setShowModal(true) // Show modal after animation completes
+            }
+            // Stop the animation loop (will be handled in next frame)
+            return
+          }
+          // Between rotationDuration and totalDuration, just pause (no rotation)
+        } else if (mode === 'idle') {
+          // Normal auto-rotate
+          autoRotateTimeRef.current += deltaTime * 0.6
 
-        // Create quaternions for each axis
-        const qx = new THREE.Quaternion()
-        qx.setFromAxisAngle(new THREE.Vector3(1, 0, 0), speedX)
+          const t = autoRotateTimeRef.current
 
-        const qy = new THREE.Quaternion()
-        qy.setFromAxisAngle(new THREE.Vector3(0, 1, 0), speedY)
+          const speedX = Math.sin(t * 0.3) * 0.003 * (deltaTime * 60)
+          const speedY = Math.cos(t * 0.4) * 0.003 * (deltaTime * 60)
+          const speedZ = Math.sin(t * 0.5) * 0.0015 * (deltaTime * 60)
 
-        const qz = new THREE.Quaternion()
-        qz.setFromAxisAngle(new THREE.Vector3(0, 0, 1), speedZ)
+          const qx = new THREE.Quaternion()
+          qx.setFromAxisAngle(new THREE.Vector3(1, 0, 0), speedX)
 
-        // Apply rotations
-        cubeRef.current.quaternion.multiplyQuaternions(qx, cubeRef.current.quaternion)
-        cubeRef.current.quaternion.multiplyQuaternions(qy, cubeRef.current.quaternion)
-        cubeRef.current.quaternion.multiplyQuaternions(qz, cubeRef.current.quaternion)
+          const qy = new THREE.Quaternion()
+          qy.setFromAxisAngle(new THREE.Vector3(0, 1, 0), speedY)
+
+          const qz = new THREE.Quaternion()
+          qz.setFromAxisAngle(new THREE.Vector3(0, 0, 1), speedZ)
+
+          cubeRef.current.quaternion.multiplyQuaternions(qx, cubeRef.current.quaternion)
+          cubeRef.current.quaternion.multiplyQuaternions(qy, cubeRef.current.quaternion)
+          cubeRef.current.quaternion.multiplyQuaternions(qz, cubeRef.current.quaternion)
+        }
+        // If mode === 'paused', don't animate at all
       }
 
       // Flip text meshes if their corresponding cube face is upside down
@@ -517,14 +783,15 @@ export default function Cube() {
       renderer.render(scene, camera)
     }
 
-    animate()
+    requestAnimationFrame(animate)
 
     // Handle window resize
     const onWindowResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)
-      updateBrandingPosition()
+      updateCubeScale()
+      setIsMobile(window.innerWidth < 768)
     }
 
     window.addEventListener('resize', onWindowResize)
@@ -541,21 +808,73 @@ export default function Cube() {
     }
   }, [])
 
+  const renderCard = () => {
+    if (selectedFace === null || !faceContent) return null
+
+    const contentType = FACES[selectedFace].contentType
+    const handleClose = () => {
+      setShowModal(false)
+      onFaceSelect(null)
+      // Resume animation when modal closes (main loop is always running)
+      animationModeRef.current = 'idle'
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const content = faceContent as any
+
+    switch (contentType) {
+      case 'process':
+        return <ProcessCard content={content} onClose={handleClose} />
+      case 'build':
+        return <BuildCard content={content} onClose={handleClose} />
+      case 'care':
+        return <CareCard content={content} onClose={handleClose} />
+      case 'pricing':
+        return <PricingCard content={content} onClose={handleClose} />
+      case 'why-yaz':
+        return <WhyYazCard content={content} onClose={handleClose} />
+      case 'contact':
+        return <ContactCard content={content} onClose={handleClose} />
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="cube-container">
-      <div ref={mountRef} className="cube-canvas" />
-      {selectedFace !== null && (
-        <div className="face-content">
+      <div
+        ref={mountRef}
+        className="cube-canvas"
+        style={{
+          opacity: selectedFace !== null && showModal ? 0 : 1,
+          pointerEvents: selectedFace !== null && showModal ? 'none' : 'auto'
+        }}
+      />
+      {selectedFace !== null && showModal && (
+        <div
+          className="face-content"
+          style={{
+            background: `#${FACES[selectedFace].color.toString(16).padStart(6, '0')}`
+          }}
+        >
           <div className="face-content-inner">
-            <h1>{FACES[selectedFace].label}</h1>
-            <p>Content for {FACES[selectedFace].label}</p>
-            <button onClick={() => setSelectedFace(null)}>Close</button>
+            {loadingContent ? (
+              <div className="loading">Loading...</div>
+            ) : (
+              renderCard()
+            )}
           </div>
         </div>
       )}
-      <div className="instructions">
-        <p>Swipe to rotate • Tap face to select</p>
-      </div>
+      {selectedFace === null && uiContent && (
+        <div className="instructions">
+          <p>
+            {isMobile
+              ? uiContent.instructions.mobile
+              : uiContent.instructions.desktop}
+          </p>
+        </div>
+      )}
     </div>
   )
 }

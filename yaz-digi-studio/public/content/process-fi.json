@@ -1,0 +1,21 @@
+{
+  "title": "Prosessi kolmessa vaiheessa",
+  "shortTitle": "Prosessi",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Keskustelu",
+      "description": "Kartoitetaan tarpeesi ja suunnitellaan rakenne"
+    },
+    {
+      "number": "02",
+      "title": "Toteutus",
+      "description": "Rakennetaan sivut modernilla teknologialla (1-2 viikkoa)"
+    },
+    {
+      "number": "03",
+      "title": "Julkaisu",
+      "description": "Sivut julkaistaan ja opit päivittämään sisältöä itse"
+    }
+  ]
+}
