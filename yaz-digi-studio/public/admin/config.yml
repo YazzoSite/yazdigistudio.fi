@@ -1,0 +1,293 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Editorial workflow (optional - enables draft/review/ready workflow)
+publish_mode: editorial_workflow
+
+# Media folder configuration
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# i18n configuration
+i18n:
+  structure: multiple_files
+  locales: [fi, en]
+  default_locale: fi
+
+# Collections (content types)
+collections:
+  # Process face
+  - name: "process"
+    label: "Process"
+    folder: "public/content"
+    create: false
+    i18n: true
+    identifier_field: "title"
+    files:
+      - name: "process-fi"
+        label: "Process (Finnish)"
+        file: "public/content/process-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+      - name: "process-en"
+        label: "Process (English)"
+        file: "public/content/process-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+  # Build face
+  - name: "build"
+    label: "Build Packages"
+    folder: "public/content"
+    create: false
+    i18n: true
+    files:
+      - name: "build-fi"
+        label: "Build (Finnish)"
+        file: "public/content/build-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+      - name: "build-en"
+        label: "Build (English)"
+        file: "public/content/build-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+  # Care face
+  - name: "care"
+    label: "Maintenance & Care"
+    folder: "public/content"
+    create: false
+    i18n: true
+    files:
+      - name: "care-fi"
+        label: "Care (Finnish)"
+        file: "public/content/care-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+      - name: "care-en"
+        label: "Care (English)"
+        file: "public/content/care-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+  # Pricing face
+  - name: "pricing"
+    label: "Pricing"
+    folder: "public/content"
+    create: false
+    i18n: true
+    files:
+      - name: "pricing-fi"
+        label: "Pricing (Finnish)"
+        file: "public/content/pricing-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Addons"
+            name: "addons"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Icon", name: "icon", widget: "string" }
+          - { label: "Note", name: "note", widget: "text" }
+      - name: "pricing-en"
+        label: "Pricing (English)"
+        file: "public/content/pricing-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Addons"
+            name: "addons"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Icon", name: "icon", widget: "string" }
+          - { label: "Note", name: "note", widget: "text" }
+
+  # Why Yaz face
+  - name: "why-yaz"
+    label: "Why Yaz DigiStudio"
+    folder: "public/content"
+    create: false
+    i18n: true
+    files:
+      - name: "why-yaz-fi"
+        label: "Why Yaz (Finnish)"
+        file: "public/content/why-yaz-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string" }
+      - name: "why-yaz-en"
+        label: "Why Yaz (English)"
+        file: "public/content/why-yaz-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string" }
+
+  # Contact face
+  - name: "contact"
+    label: "Contact"
+    folder: "public/content"
+    create: false
+    i18n: true
+    files:
+      - name: "contact-fi"
+        label: "Contact (Finnish)"
+        file: "public/content/contact-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Form"
+            name: "form"
+            widget: "object"
+            fields:
+              - label: "Fields"
+                name: "fields"
+                widget: "list"
+                fields:
+                  - { label: "ID", name: "id", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Type", name: "type", widget: "string" }
+                  - { label: "Placeholder", name: "placeholder", widget: "string" }
+                  - { label: "Required", name: "required", widget: "boolean" }
+                  - label: "Options"
+                    name: "options"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Value", name: "value", widget: "string" }
+                      - { label: "Label", name: "label", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Error Message", name: "errorMessage", widget: "text" }
+          - label: "Info"
+            name: "info"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Response Time", name: "responseTime", widget: "string" }
+      - name: "contact-en"
+        label: "Contact (English)"
+        file: "public/content/contact-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Form"
+            name: "form"
+            widget: "object"
+            fields:
+              - label: "Fields"
+                name: "fields"
+                widget: "list"
+                fields:
+                  - { label: "ID", name: "id", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Type", name: "type", widget: "string" }
+                  - { label: "Placeholder", name: "placeholder", widget: "string" }
+                  - { label: "Required", name: "required", widget: "boolean" }
+                  - label: "Options"
+                    name: "options"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Value", name: "value", widget: "string" }
+                      - { label: "Label", name: "label", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Error Message", name: "errorMessage", widget: "text" }
+          - label: "Info"
+            name: "info"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Response Time", name: "responseTime", widget: "string" }
