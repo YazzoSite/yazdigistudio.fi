@@ -1,0 +1,19 @@
+{
+  "title": "About",
+  "shortTitle": "About",
+  "subtitle": "Yaz DigiStudio - Modern web development",
+  "sections": [
+    {
+      "title": "Timo Saari",
+      "content": "I'm Timo Saari, a web developer who helps businesses and individuals create modern, functional websites. I focus on user-friendliness, speed, and ease of maintenance."
+    },
+    {
+      "title": "Yazzo.io Oy",
+      "content": "Yaz DigiStudio is part of Yazzo.io Oy's service portfolio. Yazzo.io offers a broader range of digital services and solutions."
+    }
+  ],
+  "company": {
+    "name": "Provided by Yazzo.io Oy",
+    "link": "https://yazzo.io"
+  }
+}

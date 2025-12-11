@@ -27,6 +27,10 @@ type CareCardProps = {
 }
 
 export function CareCard({ content, onClose }: CareCardProps) {
+  if (!content || !content.packages) {
+    return null
+  }
+
   return (
     <div className="card-content">
       <button className="card-close" onClick={onClose} aria-label="Close">×</button>

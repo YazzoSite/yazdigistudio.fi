@@ -26,6 +26,10 @@ type WhyYazCardProps = {
 }
 
 export function WhyYazCard({ content, onClose }: WhyYazCardProps) {
+  if (!content || !content.benefits) {
+    return null
+  }
+
   return (
     <div className="card-content">
       <button className="card-close" onClick={onClose} aria-label="Close">×</button>

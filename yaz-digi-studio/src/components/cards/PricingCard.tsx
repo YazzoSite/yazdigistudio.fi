@@ -27,6 +27,10 @@ type PricingCardProps = {
 }
 
 export function PricingCard({ content, onClose }: PricingCardProps) {
+  if (!content || !content.addons) {
+    return null
+  }
+
   return (
     <div className="card-content">
       <button className="card-close" onClick={onClose} aria-label="Close">×</button>

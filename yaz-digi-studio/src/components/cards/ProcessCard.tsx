@@ -24,6 +24,10 @@ type ProcessCardProps = {
 }
 
 export function ProcessCard({ content, onClose }: ProcessCardProps) {
+  if (!content || !content.steps) {
+    return null
+  }
+
   return (
     <div className="card-content">
       <button className="card-close" onClick={onClose} aria-label="Close">×</button>

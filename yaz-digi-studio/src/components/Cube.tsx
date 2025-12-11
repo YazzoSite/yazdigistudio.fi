@@ -4,7 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { ProcessCard } from './cards/ProcessCard'
 import { BuildCard } from './cards/BuildCard'
 import { CareCard } from './cards/CareCard'
-import { PricingCard } from './cards/PricingCard'
+import { AboutCard } from './cards/AboutCard'
 import { WhyYazCard } from './cards/WhyYazCard'
 import { ContactCard } from './cards/ContactCard'
 import './Cube.css'
@@ -13,7 +13,7 @@ const FACES = [
   { contentType: 'process', position: [0, 0, 2], color: 0x0044ff },      // Deep Electric Blue
   { contentType: 'build', position: [0, 0, -2], color: 0xff0033 },       // Deep Crimson Red
   { contentType: 'care', position: [2, 0, 0], color: 0xaa00ff },         // Deep Violet Purple
-  { contentType: 'pricing', position: [-2, 0, 0], color: 0xffbb00 },     // Golden Amber
+  { contentType: 'about', position: [-2, 0, 0], color: 0xffbb00 },       // Golden Amber
   { contentType: 'why-yaz', position: [0, 2, 0], color: 0xff0099 },      // Hot Magenta
   { contentType: 'contact', position: [0, -2, 0], color: 0x00ccff },     // Bright Cyan
 ] as const
@@ -32,7 +32,7 @@ export default function Cube({ selectedFace, onFaceSelect }: CubeProps) {
   const cubeRef = useRef<THREE.Group | null>(null)
   const textMeshesRef = useRef<THREE.Mesh[]>([])
   const [faceLabels, setFaceLabels] = useState<string[]>([
-    'Process', 'Build', 'Care', 'Pricing', 'Why Yaz', 'Contact'
+    'Process', 'Build', 'Care', 'About', 'Why Yaz', 'Contact'
   ])
   const [faceContent, setFaceContent] = useState<unknown>(null)
   const [loadingContent, setLoadingContent] = useState(false)
@@ -829,8 +829,8 @@ export default function Cube({ selectedFace, onFaceSelect }: CubeProps) {
         return <BuildCard content={content} onClose={handleClose} />
       case 'care':
         return <CareCard content={content} onClose={handleClose} />
-      case 'pricing':
-        return <PricingCard content={content} onClose={handleClose} />
+      case 'about':
+        return <AboutCard content={content} onClose={handleClose} />
       case 'why-yaz':
         return <WhyYazCard content={content} onClose={handleClose} />
       case 'contact':

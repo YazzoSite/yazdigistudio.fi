@@ -1,12 +1,12 @@
 {
-  "title": "Rakennuspaketit",
-  "shortTitle": "Paketit",
-  "subtitle": "Valitse tarpeisiisi sopiva paketti, lopullinen hinta määritellään projektin todellisen laajuuden mukaan ja sovitaan erikseen aloitusvaiheessa.",
+  "title": "Esimerkit",
+  "shortTitle": "Esimerkit",
+  "subtitle": "Tässä esimerkkejä toteutuksista, lopullinen hinta määritellään projektin todellisen laajuuden mukaan ja sovitaan erikseen aloitusvaiheessa.",
   "packages": [
     {
       "id": "basic",
       "name": "Perus",
-      "price": "alkaen 499€ + alv",
+      "price": "alkaen 799€ + alv",
       "stars": "⭐",
       "features": [
         "3+ sivua",
@@ -18,7 +18,7 @@
     {
       "id": "extended",
       "name": "Laajennettu",
-      "price": "alkaen 799€ + alv",
+      "price": "alkaen 999€ + alv",
       "stars": "⭐⭐",
       "features": [
         "5+ sivua",
@@ -30,7 +30,7 @@
     {
       "id": "business",
       "name": "Yritys",
-      "price": "alkaen 999€ + alv",
+      "price": "alkaen 1499€ + alv",
       "stars": "⭐⭐⭐",
       "features": [
         "6+ sivua",

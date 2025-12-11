@@ -1,58 +1,10 @@
 {
-  "title": "Get in touch - Yaz DigiStudio",
+  "title": "Get in touch",
   "shortTitle": "Contact",
-  "subtitle": "Let's discuss your project, define your needs and offer a solution tailored just for you.",
-  "form": {
-    "fields": [
-      {
-        "id": "name",
-        "label": "Name",
-        "type": "text",
-        "placeholder": "Your name",
-        "required": true
-      },
-      {
-        "id": "email",
-        "label": "Email",
-        "type": "email",
-        "placeholder": "email@example.com",
-        "required": true
-      },
-      {
-        "id": "phone",
-        "label": "Phone",
-        "type": "tel",
-        "placeholder": "+358 40 123 4567",
-        "required": false
-      },
-      {
-        "id": "package",
-        "label": "Package of interest",
-        "type": "select",
-        "options": [
-          { "value": "", "label": "Select package" },
-          { "value": "basic", "label": "Basic (from 499€ + VAT)" },
-          { "value": "extended", "label": "Extended (from 699€ + VAT)" },
-          { "value": "business", "label": "Business (from 899€ + VAT)" },
-          { "value": "custom", "label": "Custom solution" }
-        ],
-        "required": false
-      },
-      {
-        "id": "message",
-        "label": "Message",
-        "type": "textarea",
-        "placeholder": "Tell us about your project...",
-        "required": true
-      }
-    ],
-    "submitButton": "Send message",
-    "successMessage": "Thank you for your message! I'll get back to you soon.",
-    "errorMessage": "Failed to send message. Please try again or send directly via email."
-  },
+  "subtitle": "Contact us by email or phone",
   "info": {
-    "email": "info@yazdigistudio.fi",
-    "phone": "+358 40 123 4567",
+    "email": "info@yazzo.io",
+    "phone": "+358 45 3306645",
     "responseTime": "I usually respond within 1-2 business days"
   }
 }

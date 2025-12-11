@@ -13,7 +13,7 @@ const FACES = [
   { contentType: 'process', color: 0x0044ff },      // Deep Electric Blue
   { contentType: 'build', color: 0xff0033 },        // Deep Crimson Red
   { contentType: 'care', color: 0xaa00ff },          // Deep Violet Purple
-  { contentType: 'pricing', color: 0xffbb00 },       // Golden Amber
+  { contentType: 'about', color: 0xffbb00 },         // Golden Amber
   { contentType: 'why-yaz', color: 0xff0099 },       // Hot Magenta
   { contentType: 'contact', color: 0x00ccff },       // Bright Cyan
 ] as const
@@ -25,7 +25,7 @@ type HeaderProps = {
 export function Header({ onNavigate }: HeaderProps) {
   const { language } = useLanguage()
   const [faceLabels, setFaceLabels] = useState<string[]>([
-    'Process', 'Build', 'Care', 'Pricing', 'Why Yaz', 'Contact'
+    'Process', 'Build', 'Care', 'About', 'Why Yaz', 'Contact'
   ])
 
   // Load face labels when language changes (same pattern as Cube)

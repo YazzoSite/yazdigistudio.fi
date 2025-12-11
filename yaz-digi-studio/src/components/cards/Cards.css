@@ -136,6 +136,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.2rem;
   margin-top: 1.5rem;
+  align-items: start;
 }
 
 .package-card {
@@ -144,6 +145,9 @@
   border-radius: 12px;
   padding: 1.2rem;
   transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .package-card:hover {
@@ -204,6 +208,7 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.2rem;
   margin-top: 1.5rem;
+  align-items: start;
 }
 
 .addon-card {
@@ -213,6 +218,9 @@
   padding: 1.2rem;
   text-align: center;
   transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .addon-card:hover {
@@ -254,20 +262,24 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.2rem;
   margin-top: 1.5rem;
+  align-items: start;
 }
 
 .benefit-card {
-  background: rgba(255, 0, 153, 0.1);
-  border: 1px solid rgba(255, 0, 153, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 1.2rem;
   transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .benefit-card:hover {
-  background: rgba(255, 0, 153, 0.2);
-  border-color: #ff0099;
-  box-shadow: 0 8px 30px rgba(255, 0, 153, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00ccff;
+  box-shadow: 0 8px 30px rgba(0, 204, 255, 0.3);
   transform: translateY(-5px);
 }
 
@@ -466,4 +478,129 @@
   .card-content::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 204, 255, 0.8);
   }
+}
+
+/* About Card Styles */
+.about-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.about-section {
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.about-section:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00ccff;
+  box-shadow: 0 8px 30px rgba(0, 204, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.about-section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--neon-turquoise);
+  margin-bottom: 0.8rem;
+}
+
+.about-section-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--soft-grey-light);
+}
+
+.about-company {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(47, 248, 224, 0.2);
+}
+
+.about-company p {
+  font-size: 1.1rem;
+  color: var(--soft-grey-light);
+}
+
+.company-link {
+  color: var(--neon-turquoise);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.company-link:hover {
+  color: var(--holographic-blue);
+  text-shadow: 0 0 10px var(--neon-turquoise);
+}
+
+/* Contact Card - Simplified */
+.contact-info-centered {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+.contact-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00ccff;
+  box-shadow: 0 8px 30px rgba(0, 204, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item h3 {
+  font-size: 1.3rem;
+  color: var(--neon-turquoise);
+  margin: 0;
+}
+
+.contact-link {
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--neon-turquoise);
+}
+
+.response-time {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  color: var(--soft-grey-light);
+  font-style: italic;
 }

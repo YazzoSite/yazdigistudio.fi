@@ -27,6 +27,10 @@ type BuildCardProps = {
 }
 
 export function BuildCard({ content, onClose }: BuildCardProps) {
+  if (!content || !content.packages) {
+    return null
+  }
+
   return (
     <div className="card-content">
       <button className="card-close" onClick={onClose} aria-label="Close">×</button>
