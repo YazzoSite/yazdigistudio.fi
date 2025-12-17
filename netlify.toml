@@ -1,0 +1,11 @@
+# Netlify Configuration for Yaz DigiStudio
+
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# SPA routing - redirect all requests to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

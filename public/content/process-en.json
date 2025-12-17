@@ -1,0 +1,21 @@
+{
+  "title": "Process in three steps",
+  "shortTitle": "Process",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Discussion",
+      "description": "We start by understanding your goals and needs. Together we plan the site structure, decide on content and style. I'll guide you through what information is needed and how to organize it effectively. We'll also look at design references to match your brand's visual identity."
+    },
+    {
+      "number": "02",
+      "title": "Build",
+      "description": "I build your site using modern, reliable technology. You'll receive progress updates and can see the site taking shape. During this phase, we refine the design and content together to ensure everything matches your vision perfectly."
+    },
+    {
+      "number": "03",
+      "title": "Launch",
+      "description": "Your site goes live and is ready to welcome visitors. I'll show you how to use the content management system so you can easily update text, images, and add new content yourself. You'll also receive documentation and ongoing support to ensure everything runs smoothly."
+    }
+  ]
+}

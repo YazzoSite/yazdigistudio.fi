@@ -1,0 +1,19 @@
+{
+  "title": "Tietoa",
+  "shortTitle": "Tietoa",
+  "subtitle": "Yaz DigiStudio - Moderni web-kehitys",
+  "sections": [
+    {
+      "title": "Timo Saari",
+      "content": "Olen Timo Saari, web-kehittäjä joka auttaa yrityksiä ja yksityishenkilöitä luomaan moderneja, toimivia verkkosivuja. Keskityn käyttäjäystävällisyyteen, nopeuteen ja helppohoitoisuuteen."
+    },
+    {
+      "title": "Yazzo.io Oy",
+      "content": "Yaz DigiStudio on osa Yazzo.io Oy:n palveluvalikoimaa. Yazzo.io tarjoaa laajemman valikoiman digitaalisia palveluita ja ratkaisuja."
+    }
+  ],
+  "company": {
+    "name": "Provided by Yazzo.io Oy",
+    "link": "https://yazzo.io"
+  }
+}

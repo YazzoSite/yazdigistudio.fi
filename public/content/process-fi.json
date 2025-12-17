@@ -1,0 +1,21 @@
+{
+  "title": "Prosessi kolmessa vaiheessa",
+  "shortTitle": "Prosessi",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Keskustelu",
+      "description": "Aloitamme tutustumalla tavoitteisiisi ja tarpeisiisi. Tältä pohjalta suunnittelemme sivuston rakenteen, sisällön ja tyylin. Ohjaan sinua mitä tietoja tarvitaan ja miten ne kannattaa järjestää. Näin saamme luotua suunnitelman, joka sopii juuri sinulle."
+    },
+    {
+      "number": "02",
+      "title": "Toteutus",
+      "description": "Rakennan sivustosi modernilla ja luotettavalla teknologialla. Työskentelyni edistyttyä saat nähdä, kuinka sivut muotoutuvat ja näin varmistamme, että lopputulos vastaa toiveitasi."
+    },
+    {
+      "number": "03",
+      "title": "Julkaisu",
+      "description": "Sivustosi julkaistaan ja on valmis ottamaan vastaan vierailijoita. Näytän sinulle miten sisällönhallintajärjestelmää käytetään, jotta voit helposti päivittää tekstejä, kuvia ja lisätä uutta sisältöä itse. Saat myös dokumentaation ja jatkuvan tuen, jotta kaikki sujuu mutkattomasti."
+    }
+  ]
+}

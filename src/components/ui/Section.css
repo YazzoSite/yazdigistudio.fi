@@ -1,0 +1,32 @@
+/**
+ * Section Styles
+ */
+
+.section {
+  padding: var(--space-24) 0;
+  width: 100%;
+}
+
+.section--white {
+  background-color: var(--color-white);
+}
+
+.section--gray {
+  background-color: var(--color-surface);
+}
+
+.section__container {
+  max-width: var(--max-width-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-16) 0;
+  }
+
+  .section__container {
+    padding: 0 var(--space-4);
+  }
+}

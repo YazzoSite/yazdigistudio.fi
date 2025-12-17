@@ -1,0 +1,49 @@
+{
+  "title": "Why Yaz DigiStudio?",
+  "shortTitle": "Why Yaz?",
+  "subtitle": "Modern technology, clear process",
+  "benefits": [
+    {
+      "id": "modern-tech",
+      "title": "Modern technology",
+      "tech": "React, TypeScript, Vite",
+      "description": "Your website is built with the latest tools and techniques, ensuring it's fast, secure, and will stay up-to-date for years to come. No outdated technology that becomes problematic later.",
+      "icon": "⚡"
+    },
+    {
+      "id": "cms",
+      "title": "Update content yourself",
+      "tech": "Decap CMS, Git-based",
+      "description": "You get a simple admin panel where you can edit text, change images, and add new content whenever you want - without needing to call a developer or know any code.",
+      "icon": "✏️"
+    },
+    {
+      "id": "responsive",
+      "title": "Works on all devices",
+      "tech": "Responsive Design, Mobile-first",
+      "description": "Your website automatically adapts to look perfect whether visitors use a phone, tablet, or computer. One website that works beautifully everywhere.",
+      "icon": "📱"
+    },
+    {
+      "id": "seo",
+      "title": "Found on Google",
+      "tech": "SEO Optimization, Schema.org",
+      "description": "Your website is built so that Google and other search engines can easily find and rank it. This means more potential customers will discover your business when searching online.",
+      "icon": "🔍"
+    },
+    {
+      "id": "fast",
+      "title": "Loads quickly",
+      "tech": "Optimized Build, CDN Hosting",
+      "description": "Fast websites keep visitors happy and engaged. Your site opens in seconds, not minutes. This means visitors stay longer and are more likely to contact you.",
+      "icon": "🚀"
+    },
+    {
+      "id": "support",
+      "title": "Support in Finnish",
+      "tech": "Local Service, Direct Communication",
+      "description": "Clear communication and support in Finnish language. No confusing technical jargon - everything explained in plain terms you can understand.",
+      "icon": "💬"
+    }
+  ]
+}

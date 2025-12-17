@@ -1,0 +1,18 @@
+{
+  "instructions": {
+    "desktop": "Drag to rotate • Click face to select",
+    "mobile": "Swipe to rotate • Tap face to select"
+  },
+  "hero": {
+    "headline": "Modern Websites for Small Businesses & Freelancers",
+    "subheadline": "Easy to maintain. Fast and reliable. No technical headaches.",
+    "ctaPrimary": "Get Started",
+    "ctaSecondary": "See How We Work"
+  },
+  "navigation": {
+    "services": "Services",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact"
+  }
+}

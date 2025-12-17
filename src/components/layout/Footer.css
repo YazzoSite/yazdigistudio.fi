@@ -1,0 +1,123 @@
+/**
+ * Footer Styles
+ */
+
+.footer {
+  background: linear-gradient(to bottom, #0F172A 0%, #1e293b 100%);
+  padding: var(--space-12) 0 var(--space-8);
+  margin-top: auto;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.footer__container {
+  max-width: var(--max-width-md);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* ==================== BRAND ==================== */
+
+.footer__brand {
+  text-align: center;
+}
+
+.footer__brand-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: var(--space-2);
+}
+
+.footer__brand-tagline {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ==================== CONTACT ==================== */
+
+.footer__contact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer__contact-link {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.footer__contact-link:hover {
+  color: rgba(139, 92, 246, 0.8);
+  transform: translateY(-1px);
+}
+
+.footer__contact-separator {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.875rem;
+}
+
+/* ==================== COPYRIGHT ==================== */
+
+.footer__copyright {
+  font-family: var(--font-primary);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--space-10) 0 var(--space-6);
+  }
+
+  .footer__container {
+    gap: var(--space-6);
+  }
+
+  .footer__brand-name {
+    font-size: 1.25rem;
+  }
+
+  .footer__brand-tagline {
+    font-size: 0.875rem;
+  }
+
+  .footer__contact {
+    gap: var(--space-3);
+  }
+
+  .footer__contact-link {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__contact {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .footer__contact-separator {
+    display: none;
+  }
+}

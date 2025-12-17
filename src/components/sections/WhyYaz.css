@@ -1,0 +1,152 @@
+/**
+ * WhyYaz Section Styles
+ */
+
+.why-yaz {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+  padding: var(--space-16) 0;
+  position: relative;
+  scroll-margin-top: 64px;
+}
+
+.why-yaz__container {
+  max-width: var(--max-width-lg);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+  text-align: center;
+}
+
+/* ==================== HEADER ==================== */
+
+.why-yaz__title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-black);
+  margin-bottom: var(--space-4);
+}
+
+.why-yaz__subtitle {
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-12);
+}
+
+/* ==================== GRID ==================== */
+
+.why-yaz__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+/* ==================== CARDS ==================== */
+
+.why-yaz__card {
+  padding: var(--space-8);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: var(--border-radius-lg);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.why-yaz__card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+}
+
+.why-yaz__icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  line-height: 1;
+}
+
+.why-yaz__card-title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--color-black);
+  margin-bottom: var(--space-2);
+}
+
+.why-yaz__card-tech {
+  font-family: var(--font-primary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.02em;
+}
+
+.why-yaz__card-description {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .why-yaz {
+    padding: var(--space-12) 0;
+    scroll-margin-top: 56px;
+  }
+
+  .why-yaz__title {
+    font-size: 2.25rem;
+  }
+
+  .why-yaz__subtitle {
+    font-size: 1rem;
+  }
+
+  .why-yaz__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .why-yaz__card {
+    padding: var(--space-6);
+  }
+
+  .why-yaz__icon {
+    font-size: 2.5rem;
+  }
+
+  .why-yaz__card-title {
+    font-size: 1.25rem;
+  }
+
+  .why-yaz__card-description {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-yaz__title {
+    font-size: 1.875rem;
+  }
+
+  .why-yaz__card {
+    padding: var(--space-5);
+  }
+}

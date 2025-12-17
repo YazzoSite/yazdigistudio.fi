@@ -1,0 +1,344 @@
+/**
+ * ServicesSlideshow Styles
+ */
+
+.services-slideshow {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #f1f3f5 100%);
+  padding: var(--space-8) 0;
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 64px;
+}
+
+/* Large blue-gray shape moving left to right */
+.services-slideshow::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(ellipse at center, rgba(100, 116, 139, 0.15) 0%, rgba(100, 116, 139, 0.25) 50%, transparent 100%);
+  top: -10%;
+  left: -30%;
+  border-radius: 50%;
+  animation: moveBlueGray 40s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Dark red diagonal line */
+.services-slideshow::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 180vh;
+  background: linear-gradient(to top, transparent 0%, rgba(185, 28, 28, 0.4) 20%, rgba(185, 28, 28, 0.6) 50%, rgba(185, 28, 28, 0.4) 80%, transparent 100%);
+  bottom: -90vh;
+  right: -20%;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  animation: moveRedLine 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes moveBlueGray {
+  0% {
+    left: -30%;
+  }
+  50% {
+    left: 70%;
+  }
+  100% {
+    left: -30%;
+  }
+}
+
+@keyframes moveRedLine {
+  0% {
+    transform: translate(0, 0) rotate(-45deg);
+  }
+  100% {
+    transform: translate(-180vw, -180vh) rotate(-45deg);
+  }
+}
+
+.services-slideshow__container {
+  max-width: var(--max-width-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================== EMBLA CAROUSEL ==================== */
+
+.embla {
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  position: relative;
+}
+
+
+/* ==================== SERVICE SLIDE ==================== */
+
+.service-slide {
+  padding: var(--space-4) 0;
+  text-align: center;
+}
+
+.service-slide__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-black);
+  margin-bottom: var(--space-3);
+}
+
+.service-slide__subtitle {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-6);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==================== STEP CARDS (Process) ==================== */
+
+.service-slide__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step-card {
+  padding: var(--space-6);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: var(--border-radius-lg);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-base);
+}
+
+.step-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.step-card__number {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.step-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-black);
+  margin-bottom: var(--space-2);
+}
+
+.step-card__description {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-secondary);
+}
+
+/* ==================== PACKAGE CARDS (Build & Care) ==================== */
+
+.service-slide__packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.package-card {
+  padding: var(--space-6);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: var(--border-radius-lg);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.package-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.package-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.package-card__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.package-card__stars {
+  font-size: 1rem;
+}
+
+.package-card__price {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.package-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.package-card__features li {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-secondary);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.package-card__features li:last-child {
+  border-bottom: none;
+}
+
+.package-card__features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ==================== NAVIGATION DOTS ==================== */
+
+.embla__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.embla__dot {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: var(--border-radius-full);
+  padding: var(--space-3) var(--space-6);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(15, 23, 42, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.embla__dot:hover {
+  border-color: rgba(15, 23, 42, 0.3);
+  background: rgba(15, 23, 42, 0.03);
+  color: var(--color-black);
+}
+
+.embla__dot--active {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(15, 23, 42, 0.95);
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+.embla__dot span {
+  display: block;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .services-slideshow {
+    padding: var(--space-12) 0;
+    scroll-margin-top: 56px;
+  }
+
+  .service-slide__title {
+    font-size: 2rem;
+  }
+
+  .service-slide__subtitle {
+    font-size: 1rem;
+  }
+
+  .service-slide__steps,
+  .service-slide__packages {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card,
+  .package-card {
+    padding: var(--space-6);
+  }
+
+  .embla__dots {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .embla__dot {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-slide__title {
+    font-size: 1.75rem;
+  }
+
+  .step-card__number {
+    font-size: 2rem;
+  }
+
+  .package-card__price {
+    font-size: 1.5rem;
+  }
+}

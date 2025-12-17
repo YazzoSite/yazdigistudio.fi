@@ -1,0 +1,49 @@
+{
+  "title": "Miksi Yaz DigiStudio?",
+  "shortTitle": "Miksi Yaz?",
+  "subtitle": "Moderni teknologia, selkeä prosessi",
+  "benefits": [
+    {
+      "id": "modern-tech",
+      "title": "Moderni teknologia",
+      "tech": "React, TypeScript, Vite",
+      "description": "Sivustosi rakennetaan uusimmilla työkaluilla ja tekniikoilla, mikä takaa nopean, turvallisen ja tulevaisuuden kestävän lopputuloksen. Ei vanhentunutta tekniikkaa, joka aiheuttaa ongelmia myöhemmin.",
+      "icon": "⚡"
+    },
+    {
+      "id": "cms",
+      "title": "Päivitä sisältöä itse",
+      "tech": "Decap CMS, Git-pohjainen",
+      "description": "Saat yksinkertaisen hallintapaneelin, jossa voit muokata tekstejä, vaihtaa kuvia ja lisätä uutta sisältöä milloin haluat - ilman että sinun tarvitsee soittaa kehittäjälle tai osata koodata.",
+      "icon": "✏️"
+    },
+    {
+      "id": "responsive",
+      "title": "Toimii kaikilla laitteilla",
+      "tech": "Responsiivinen suunnittelu, Mobile-first",
+      "description": "Sivustosi mukautuu automaattisesti näyttämään täydelliseltä riippumatta siitä, käyttävätkö vierailijat puhelinta, tablettia vai tietokonetta. Yksi sivusto, joka toimii kauniisti kaikkialla.",
+      "icon": "📱"
+    },
+    {
+      "id": "seo",
+      "title": "Löytyy Googlesta",
+      "tech": "SEO-optimointi, Schema.org",
+      "description": "Sivustosi rakennetaan niin, että Google ja muut hakukoneet löytävät ja listaavat sen helposti. Tämä tarkoittaa, että useammat potentiaaliset asiakkaat löytävät yrityksesi verkossa.",
+      "icon": "🔍"
+    },
+    {
+      "id": "fast",
+      "title": "Latautuu nopeasti",
+      "tech": "Optimoitu build, CDN-hosting",
+      "description": "Nopeat sivustot pitävät vierailijat tyytyväisinä ja kiinnostuneina. Sivustosi avautuu sekunneissa, ei minuuteissa. Tämä tarkoittaa, että vierailijat viipyvät pidempään ja ottavat todennäköisemmin yhteyttä.",
+      "icon": "🚀"
+    },
+    {
+      "id": "support",
+      "title": "Tuki suomeksi",
+      "tech": "Paikallinen palvelu, Suora yhteydenpito",
+      "description": "Selkeä kommunikaatio ja tuki suomen kielellä. Ei hämmentävää ammattislangia - kaikki selitetään selvästi ja ymmärrettävästi.",
+      "icon": "💬"
+    }
+  ]
+}

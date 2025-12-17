@@ -1,0 +1,43 @@
+{
+  "title": "Esimerkit",
+  "shortTitle": "Esimerkit",
+  "subtitle": "Tässä esimerkkejä toteutuksista, lopullinen hinta määritellään projektin todellisen laajuuden mukaan ja sovitaan erikseen aloitusvaiheessa.",
+  "packages": [
+    {
+      "id": "basic",
+      "name": "Perus",
+      "price": "alkaen 799€ + alv",
+      "stars": "⭐",
+      "features": [
+        "3+ sivua",
+        "CMS sisällönhallinta",
+        "Responsiivinen",
+        "Hakukoneystävällinen"
+      ]
+    },
+    {
+      "id": "extended",
+      "name": "Laajennettu",
+      "price": "alkaen 999€ + alv",
+      "stars": "⭐⭐",
+      "features": [
+        "5+ sivua",
+        "Lomake",
+        "Galleria/kortit",
+        "Ikonit"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Yritys",
+      "price": "alkaen 1499€ + alv",
+      "stars": "⭐⭐⭐",
+      "features": [
+        "6+ sivua",
+        "Useita komponentteja",
+        "Räätälöity layout",
+        "Edistynyt optimointi"
+      ]
+    }
+  ]
+}
