@@ -1,0 +1,359 @@
+# Decap CMS Configuration for YazDigiStudio
+backend:
+  name: git-gateway
+  branch: main
+
+# Media files
+media_folder: "public/images"
+public_folder: "/images"
+
+# Enable local backend for testing
+local_backend: true
+
+# Collections - define editable content
+collections:
+  # About Section
+  - name: "about"
+    label: "About Section"
+    files:
+      - label: "About (Finnish)"
+        name: "about-fi"
+        file: "public/content/about-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Section Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+          - label: "Company"
+            name: "company"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+
+      - label: "About (English)"
+        name: "about-en"
+        file: "public/content/about-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Section Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+          - label: "Company"
+            name: "company"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+
+  # Why YazDigiStudio Section
+  - name: "why-yaz"
+    label: "Why YazDigiStudio"
+    files:
+      - label: "Why YazDigiStudio (Finnish)"
+        name: "why-yaz-fi"
+        file: "public/content/why-yaz-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Technology", name: "tech", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string" }
+
+      - label: "Why YazDigiStudio (English)"
+        name: "why-yaz-en"
+        file: "public/content/why-yaz-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Technology", name: "tech", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string" }
+
+  # Footer
+  - name: "footer"
+    label: "Footer"
+    files:
+      - label: "Footer (Finnish)"
+        name: "footer-fi"
+        file: "public/content/footer-fi.json"
+        fields:
+          - label: "Brand"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Copyright", name: "copyright", widget: "string" }
+
+      - label: "Footer (English)"
+        name: "footer-en"
+        file: "public/content/footer-en.json"
+        fields:
+          - label: "Brand"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Copyright", name: "copyright", widget: "string" }
+
+  # Contact Section
+  - name: "contact"
+    label: "Contact"
+    files:
+      - label: "Contact (Finnish)"
+        name: "contact-fi"
+        file: "public/content/contact-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Contact Info"
+            name: "info"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Response Time", name: "responseTime", widget: "string" }
+
+      - label: "Contact (English)"
+        name: "contact-en"
+        file: "public/content/contact-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Contact Info"
+            name: "info"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Response Time", name: "responseTime", widget: "string" }
+
+  # Pricing/Build Section
+  - name: "pricing"
+    label: "Pricing"
+    files:
+      - label: "Pricing (Finnish)"
+        name: "build-fi"
+        file: "public/content/build-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Included in All Packages"
+            name: "includedInAll"
+            widget: "list"
+            fields:
+              - { label: "Feature", name: "feature", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+      - label: "Pricing (English)"
+        name: "build-en"
+        file: "public/content/build-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Included in All Packages"
+            name: "includedInAll"
+            widget: "list"
+            fields:
+              - { label: "Feature", name: "feature", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+  # Maintenance/Care Section
+  - name: "maintenance"
+    label: "Maintenance"
+    files:
+      - label: "Maintenance (Finnish)"
+        name: "care-fi"
+        file: "public/content/care-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+      - label: "Maintenance (English)"
+        name: "care-en"
+        file: "public/content/care-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Stars", name: "stars", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+  # Process Section
+  - name: "process"
+    label: "Process"
+    files:
+      - label: "Process (Finnish)"
+        name: "process-fi"
+        file: "public/content/process-fi.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+      - label: "Process (English)"
+        name: "process-en"
+        file: "public/content/process-en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Short Title", name: "shortTitle", widget: "string" }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+  # UI Text & Navigation
+  - name: "ui"
+    label: "UI Text"
+    files:
+      - label: "UI Text (Finnish)"
+        name: "ui-fi"
+        file: "public/content/ui-fi.json"
+        fields:
+          - label: "Instructions"
+            name: "instructions"
+            widget: "object"
+            fields:
+              - { label: "Desktop Instructions", name: "desktop", widget: "string" }
+              - { label: "Mobile Instructions", name: "mobile", widget: "string" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Subheadline", name: "subheadline", widget: "string" }
+              - { label: "Primary CTA", name: "ctaPrimary", widget: "string" }
+              - { label: "Secondary CTA", name: "ctaSecondary", widget: "string" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - { label: "Services", name: "services", widget: "string" }
+              - { label: "Pricing", name: "pricing", widget: "string" }
+              - { label: "About", name: "about", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string" }
+
+      - label: "UI Text (English)"
+        name: "ui-en"
+        file: "public/content/ui-en.json"
+        fields:
+          - label: "Instructions"
+            name: "instructions"
+            widget: "object"
+            fields:
+              - { label: "Desktop Instructions", name: "desktop", widget: "string" }
+              - { label: "Mobile Instructions", name: "mobile", widget: "string" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Subheadline", name: "subheadline", widget: "string" }
+              - { label: "Primary CTA", name: "ctaPrimary", widget: "string" }
+              - { label: "Secondary CTA", name: "ctaSecondary", widget: "string" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - { label: "Services", name: "services", widget: "string" }
+              - { label: "Pricing", name: "pricing", widget: "string" }
+              - { label: "About", name: "about", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string" }
