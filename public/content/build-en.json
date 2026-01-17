@@ -23,8 +23,10 @@
       "price": "799€ + 129€/year or 49€/month",
       "stars": "⭐",
       "features": [
-        "3+ pages",
-        "Layout design"
+        "Frontpage",
+        "About us page",
+        "Our team page",
+        "Contact page"
       ]
     },
     {
@@ -33,8 +35,8 @@
       "price": "999€ + 129€/year or 59€/month",
       "stars": "⭐⭐",
       "features": [
-        "5+ pages",
-        "For example: Gallery, gig schedule, menu"
+        "Basic +",
+        "Calendar/Blog/Gallery"
       ]
     },
     {
@@ -43,9 +45,8 @@
       "price": "from 1,999€ + 129€/year or from 129€/month",
       "stars": "⭐⭐⭐",
       "features": [
-        "5+ pages",
-        "Multiple components",
-        "For example: Calendar, online shop, booking system"
+        "Extended +",
+        "Online shop or booking system integration"
       ]
     }
   ]

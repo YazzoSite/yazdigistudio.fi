@@ -23,8 +23,10 @@
       "price": "799€ + 129€/vuosi tai 49€/kk",
       "stars": "⭐",
       "features": [
-        "3+ sivua",
-        "Ulkoasusuunnittelu"
+        "Etusivu",
+        "Meistä-sivu",
+        "Tiimimme-sivu",
+        "Yhteystiedot-sivu"
       ]
     },
     {
@@ -33,8 +35,8 @@
       "price": "999€ + 129€/vuosi tai 59€/kk",
       "stars": "⭐⭐",
       "features": [
-        "5+ sivua",
-        "Esimerkiksi: Galleria, keikkalista, menu"
+        "Perus +",
+        "Kalenteri/Blogi/Galleria"
       ]
     },
     {
@@ -43,9 +45,8 @@
       "price": "alkaen 1 999€ + 129€/vuosi tai alkaen 129€/kk",
       "stars": "⭐⭐⭐",
       "features": [
-        "5+ sivua",
-        "Useita komponentteja",
-        "Esimerkiksi: Kalenteri, verkkokauppa, varausjärjestelmä"
+        "Laajennettu +",
+        "Verkkokauppa tai varausjärjestelmä integraatio"
       ]
     }
   ]
