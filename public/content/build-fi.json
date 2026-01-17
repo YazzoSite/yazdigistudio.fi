@@ -20,7 +20,7 @@
     {
       "id": "basic",
       "name": "Perus",
-      "price": "alkaen 799€",
+      "price": "799€ + 129€/vuosi tai 49€/kk",
       "stars": "⭐",
       "features": [
         "3+ sivua",
@@ -30,7 +30,7 @@
     {
       "id": "extended",
       "name": "Laajennettu",
-      "price": "alkaen 999€",
+      "price": "999€ + 129€/vuosi tai 59€/kk",
       "stars": "⭐⭐",
       "features": [
         "5+ sivua",
@@ -40,7 +40,7 @@
     {
       "id": "company",
       "name": "Yritys",
-      "price": "alkaen 1 999€",
+      "price": "alkaen 1 999€ + 129€/vuosi tai alkaen 129€/kk",
       "stars": "⭐⭐⭐",
       "features": [
         "5+ sivua",

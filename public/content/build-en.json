@@ -20,7 +20,7 @@
     {
       "id": "basic",
       "name": "Basic",
-      "price": "from 799€",
+      "price": "799€ + 129€/year or 49€/month",
       "stars": "⭐",
       "features": [
         "3+ pages",
@@ -30,7 +30,7 @@
     {
       "id": "extended",
       "name": "Extended",
-      "price": "from 999€",
+      "price": "999€ + 129€/year or 59€/month",
       "stars": "⭐⭐",
       "features": [
         "5+ pages",
@@ -40,7 +40,7 @@
     {
       "id": "company",
       "name": "Company",
-      "price": "from 1,999€",
+      "price": "from 1,999€ + 129€/year or from 129€/month",
       "stars": "⭐⭐⭐",
       "features": [
         "5+ pages",
